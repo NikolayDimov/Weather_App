@@ -6,11 +6,15 @@ import backgroundImg from './assets/background.png';
 import { useEffect, useState } from 'react';
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 import { MeteoApi } from './api/meteo';
+import { useFonts } from 'expo-font';
 
 
 export default function App() {
   const [coordinates, setCoordinates] = useState();
   const [weather, setWeather] = useState();
+  const [isFontLoaded] = useFonts({
+    "Alata-Regular": require('./assets/fonts/Alata-Regular.ttf')
+  });
 
   useEffect(() => {
     getUserCoordinates();
@@ -25,7 +29,6 @@ export default function App() {
   async function fetchWeatherByCoords(coords) {
     const weatherResponse = await MeteoApi.fetchWeatherByCoords(coords);
     setWeather(weatherResponse);
-
   }
 
   async function getUserCoordinates() {
@@ -41,14 +44,15 @@ export default function App() {
     }
   };
 
-  console.log('coordinates', coordinates);
-  console.log('weather', weather);
+  // console.log('coordinates', coordinates);
+  // console.log('weather', weather);
+  // console.log('isFontLoaded', isFontLoaded);
 
   return (
     <ImageBackground imageStyle={s.img} style={s.img_background} source={backgroundImg}>
       <SafeAreaProvider>
         <SafeAreaView style={s.container}>
-          <Home />
+          {isFontLoaded && <Home />}
         </SafeAreaView>
       </SafeAreaProvider>
     </ImageBackground>

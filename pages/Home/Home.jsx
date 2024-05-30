@@ -1,18 +1,19 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { s } from './Home.style';
+import { Txt } from '../../components/Txt/Txt';
 
 
 export function Home() {
     return (
         <>
             <View style={s.meteo_basic}>
-                <Text style={s.txt}>Basic Wather info</Text>
+                <Txt>Hello</Txt>
             </View>
             <View style={s.searchbar_container}>
-                <Text style={s.txt}>SearchBar</Text>
+                <Txt style={s.txt}>SearchBar</Txt>
             </View>
             <View style={s.meteo_advanced}>
-                <Text style={s.txt}>Advanced weather info</Text>
+                <Txt style={s.txt}>Advanced weather info</Txt>
             </View>
         </>
     );
