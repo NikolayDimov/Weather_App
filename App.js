@@ -52,7 +52,7 @@ export default function App() {
     <ImageBackground imageStyle={s.img} style={s.img_background} source={backgroundImg}>
       <SafeAreaProvider>
         <SafeAreaView style={s.container}>
-          {isFontLoaded && <Home />}
+          {isFontLoaded && weather && <Home weather={weather} />}
         </SafeAreaView>
       </SafeAreaProvider>
     </ImageBackground>
