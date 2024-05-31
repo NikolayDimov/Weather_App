@@ -1,7 +1,7 @@
 import { s } from './App.style';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Home } from './pages/Home/Home';
-import { ImageBackground } from 'react-native';
+import { Alert, ImageBackground } from 'react-native';
 import backgroundImg from './assets/background.png';
 import { useEffect, useState } from 'react';
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
@@ -10,7 +10,7 @@ import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Forecasts } from './pages/Forecasts/Forecasts';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 
 const Stack = createNativeStackNavigator();
 const navTheme = {
@@ -49,6 +49,15 @@ export default function App() {
     setCity(cityResponse);
   }
 
+  async function fetchCoordsByCity(city) {
+    try {
+      const coordsResponse = await MeteoApi.fetchCoordsByCity(city);
+      setCoordinates(coordsResponse);
+    } catch (err) {
+      Alert.alert("Oops!", err);
+    }
+  }
+
   async function getUserCoordinates() {
     const { status } = await requestForegroundPermissionsAsync();
     if (status === 'granted') {
@@ -77,7 +86,7 @@ export default function App() {
                 initialRouteName='Home'
               >
                 <Stack.Screen name="Home">
-                  {() => <Home weather={weather} city={city} />}
+                  {() => <Home weather={weather} city={city} onSubmitSearch={fetchCoordsByCity} />}
                 </Stack.Screen>
                 <Stack.Screen name="Forecasts" component={Forecasts} />
               </Stack.Navigator>
