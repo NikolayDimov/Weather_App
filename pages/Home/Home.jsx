@@ -9,6 +9,9 @@ import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
 export function Home({ weather, city }) {
     const currentWeather = weather.current_weather;
     const currentInterpretation = getWeatherInterpretation(currentWeather.weathercode);
+    const windspeed = currentWeather.windspeed;
+    const sunrise = weather.daily.sunrise[0].split('T')[1];
+    const suntset = weather.daily.sunset[0].split('T')[1];
 
     return (
         <>
@@ -23,7 +26,7 @@ export function Home({ weather, city }) {
                 <Txt style={s.txt}>SearchBar</Txt>
             </View>
             <View style={s.meteo_advanced}>
-                <MeteoAdvanced />
+                <MeteoAdvanced sunrise={sunrise} sunset={suntset} windspeed={windspeed} />
             </View>
         </>
     );
