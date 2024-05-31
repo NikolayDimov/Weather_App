@@ -1,11 +1,15 @@
 import { s } from "./Forecasts.style.js";
 import { Txt } from "../../components/Txt/Txt.jsx";
 import { useRoute } from "@react-navigation/native";
+import { Header } from "../../components/Header/Header.jsx";
 
 export function Forecasts({ }) {
     const route = useRoute();
     const { params } = route;
-    console.log('params', params);
+    // console.log('params', params);
+    const city = params.city;
 
-    return <Txt>Forecasts</Txt>;
+    return <>
+        <Header city={city} />
+    </>;
 }
