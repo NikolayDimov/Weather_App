@@ -6,5 +6,4 @@ export const s = StyleSheet.create({
         color: "white",
         fontFamily: "Alata-Regular"
     }
-
 });
