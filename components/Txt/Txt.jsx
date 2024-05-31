@@ -4,7 +4,7 @@ import { s } from './Txt.style';
 
 export function Txt({ children, style, ...restProps }) {
     const { height } = useWindowDimensions();
-    console.log(height);
+    // console.log(height);
 
     const fontSize = style?.fontSize || s.txt.fontSize;
     const scaledFontSize = fontSize * (height / 800);

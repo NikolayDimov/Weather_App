@@ -17,6 +17,7 @@ export function Home({ weather, city }) {
         <>
             <View style={s.meteo_basic}>
                 <MeteoBasic
+                    dailyWeather={weather.daily}
                     interpretation={currentInterpretation}
                     temperature={Math.round(currentWeather.temperature)}
                     city={city}
