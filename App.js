@@ -2,7 +2,7 @@ import { s } from './App.style';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Home } from './pages/Home/Home';
 import { Alert, ImageBackground } from 'react-native';
-import backgroundImg from './assets/background.png';
+import backgroundImg from './assets/background/background.png';
 import { useEffect, useState } from 'react';
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 import { MeteoApi } from './api/meteo';
@@ -15,7 +15,7 @@ import { Forecasts } from './pages/Forecasts/Forecasts';
 const Stack = createNativeStackNavigator();
 const navTheme = {
   colors: {
-    backgroundColor: "transparent"
+    background: "transparent"
   }
 };
 
@@ -82,7 +82,7 @@ export default function App() {
           <SafeAreaView style={s.container}>
             {isFontLoaded && weather &&
               <Stack.Navigator
-                screenOptions={{ headerShown: false, animation: "fade" }}
+                screenOptions={{ headerShown: false }}
                 initialRouteName='Home'
               >
                 <Stack.Screen name="Home">
